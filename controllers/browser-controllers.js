@@ -1,109 +1,110 @@
 const Entry = require('../models/entry')
-const { validationResult } = require('express-validator')
+const logger = require('../utils/logger')
 
 const getEntries = async (req, res, next) => {
-    let entries;
-    try {
-        entries = await Entry.find({})
-    } catch (error) {
-        return next(error)
-    }
-    res.render('index.ejs', { entries })
+	let entries = await Entry.find({ _id: { $ne: '62e9ed742b2f4a7a0866205a' } })
+	res.render('index.ejs', { entries })
 }
 
 const getDocPage = (req, res, next) => {
-    res.render('doc.ejs')
+	res.render('doc.ejs')
 }
 
 const getEditPage = (req, res, next) => {
-    res.render('crud.ejs')
+	let warning
+	res.render('crud.ejs', { entries: { warning } })
 }
 
 const getCategory = async (req, res, next) => {
-    const category = req.params.category.toLowerCase()
-    let entries;
-    try {
-        entries = await Entry.find({ category: category })
-    } catch (error) {
-        return next(error)
-    }
-    if (entries.length) {
-        res.render('index.ejs', {entries})
-    } else {
-        res.render('index.ejs', {entries: {warning: 'Nothing found in this search'}})
-    }
+	const category = req.params.category.toLowerCase()
+	let entries = Entry.find({ category: category })
+	if (entries.length) {
+		res.render('index.ejs', { entries })
+	} else {
+		res.render('index.ejs', { entries: { warning: 'Nothing found in this search' } })
+	}
 }
 
 const searchEntries = async (req, res, next) => {
-    const query = req.params.query.toLowerCase()
-    let entries;
-    try {
-        entries = await Entry.aggregate().search({
-                'index': 'corporate-entries',
-                'text': {
-                    'query': query,
-                    'path': {
-                    'wildcard': '*'
-                    },
-                    'fuzzy':{
-                    'maxEdits': 2,
-                    'prefixLength': 3
-                    }
-                }
-                }
-        )
-    } catch (error) {
-        return next(error)
-    }
-    if (entries.length) {
-        res.render('index.ejs', {entries})
-    } else {
-        res.render('index.ejs', {entries: {warning: 'Nothing found in this search'}})
-    }
+	const query = req.params.query.toLowerCase()
+	let entries = Entry.aggregate().search({
+		'index': 'corporate-entries',
+		'text': {
+			'query': query,
+			'path': {
+				'wildcard': '*'
+			},
+			'fuzzy':{
+				'maxEdits': 2,
+				'prefixLength': 3
+			}
+		}
+	}
+	)
+	if (entries.length) {
+		res.render('index.ejs', { entries })
+	} else {
+		res.render('index.ejs', { entries: { warning: 'Nothing found in this search' } })
+	}
 }
 
 const createEntry = async (req, res, next) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()){
-        return next(alert(new Error('Invalid inputs.')))
-    }
-    Entry.create(req.body)
-    .then(result => {
-        res.redirect('/crud')
-        console.log('Entry successfully created.')
-        })
-        .catch(error => 
-            console.error(error)
-        )
-    }
+	const body = req.body
+	const entry = new Entry({
+		original: body.original,
+		corporate: body.corporate,
+		category: body.category
+	})
+
+	await entry.save()
+	res.status(201).redirect('/crud')
+}
 
 const editEntry = async (req, res, next) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()){
-        console.log(errors)
-        return next(alert('Invalid input.'))
-    }
+	let queryId = req.body.patchid
 
-    await Entry.findByIdAndUpdate(req.body.patchid, {original: req.body.original, corporate: req.body.corporate, category: req.body.category}, {
-        new: true,
-        upsert: false
-    } )
-    try{
-        res.status(200).redirect('/crud')
-        console.log('Entry successfully edited.')
-    }catch(err){
-        console.log(err)
-    }
-    }
+	let entry = {
+		original: req.body.original,
+		corporate: req.body.corporate,
+		category: req.body.category
+	}
+
+	const entryToUpdate = await Entry.findById(queryId)
+
+	if (entryToUpdate){
+		Entry.findByIdAndUpdate(queryId, entry, { new: true, upsert: false, runValidators: true, context: 'query' })
+			.then(result => {
+				logger.info('Entry successfully edited.')
+				return res.status(200).redirect('/crud')
+			}).catch(error => {
+				if (error.name === 'ValidationError') {
+					let errors = {}
+
+					Object.keys(error.errors).forEach((key) => {
+						errors[key] = error.errors[key].message
+					})
+					logger.error(errors)
+					return res.status(400).render('crud.ejs', { entries: { warning: JSON.stringify(errors, null, 2) } })
+				}
+				return res.status(500).render('crud.ejs', { entries: { warning: 'Something went wrong' } })
+			})
+	}else {
+		return res.status(404).render('crud.ejs', { entries: { warning: 'Could not find ID' } })
+	}
+}
 
 const deleteEntry = async (req, res, next) => {
-    await Entry.findByIdAndDelete(req.body.deleteid)
-    try{
-        res.status(200).redirect('/crud')
-        console.log('Entry successfully deleted.')
-    }catch(err){
-        console.log(err)
-    }
+	let queryId = req.body.deleteid
+
+	const entryToDelete = await Entry.findById(queryId)
+
+	if (entryToDelete){
+		await Entry.findByIdAndRemove(queryId)
+		res.status(204).redirect('/')
+		logger.info('Entry successfully removed.')
+	} else {
+		return res.status(404).render('crud.ejs', { entries: { warning: 'Could not find ID' } })
+	}
 }
 
 exports.getEntries = getEntries

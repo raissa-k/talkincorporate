@@ -8,14 +8,14 @@ Entries can also be submitted, viewed, searched, and sorted by category on the p
 *Coming soon: user authentication.*
 
 **Link to project:** https://talkincorporate-api.herokuapp.com/<br>
-**API documentation:** https://talkincorporate-api.herokuapp.com/doc
+**API documentation:** https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0
 
 ![screenshot of the home page](https://user-images.githubusercontent.com/91985540/182052320-7383fd9f-567c-4eec-91ef-68ab8721812a.png)
 
 ## Table of Contents
 
 - [Link to project](https://talkincorporate-api.herokuapp.com/)
-- [API documentation](https://talkincorporate-api.herokuapp.com/doc)
+- [API documentation](https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0)
 - [Table of contents](#table-of-contents)
 - [How it's made](#how-its-made)
 - [Set up](#set-up)
@@ -92,4 +92,5 @@ This was a great practice in MVC architecture. As I began building this project,
 
 ## Credits:
 - [Laura](https://www.instagram.com/loewhaley/) for the content.
-- [apiDOC](https://apidocjs.com/) for the base of the documentation page.
+- [apiDOC](https://apidocjs.com/) for the base of the documentation page on Heroku.
+- [SwaggerHub](https://swagger.io/tools/swaggerhub/) for the hosted, interactive documentation.

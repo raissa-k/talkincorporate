@@ -1,18 +1,19 @@
 const express = require('express')
-const {check} = require('express-validator')
+const { check } = require('express-validator')
 
 const apiControllers = require('../controllers/api-controllers')
-const router = express.Router()
+const apiRouter = express.Router()
 
-router.get('/random', apiControllers.getRandomApi)
-router.get('/search/:query', apiControllers.searchApi)
-router.get('/:category', apiControllers.getCategoryApi)
+apiRouter.get('/', apiControllers.getEntriesApi)
+apiRouter.get('/random', apiControllers.getRandomApi)
+apiRouter.get('/search/:query', apiControllers.searchApi)
+apiRouter.get('/:category', apiControllers.getCategoryApi)
 
-router.patch('/:id', [
-    check('original').notEmpty(),
-    check('corporate').isLength({min:5}),
-    check('category').isIn(['general', 'lazy', 'boundary', 'demand', 'interview'])
+apiRouter.patch('/:id', [
+	check('original').notEmpty(),
+	check('corporate').isLength({ min:5 }),
+	check('category').isIn(['general', 'lazy', 'boundary', 'demand', 'interview'])
 ], apiControllers.editEntryApi)
 
 
-module.exports = router
+module.exports = apiRouter

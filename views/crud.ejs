@@ -32,6 +32,11 @@
     <a href="/">View entries</a>
     <h1>Talk in Corporate.</h1>
     <h2>How do you professionaly say...?</h2>
+    <% {%>
+    <% if (entries.warning) {%>
+      <pre class="language-json"><%= entries.warning %></pre>
+      <% } %>
+      <% } %>
   </header>
   <main class="forms">
     <section aria-labelledby="add-entry-title" id="add-entry">
