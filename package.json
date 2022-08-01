@@ -1,8 +1,8 @@
 {
-  "name": "crud-app",
+  "name": "talkincorporate-api",
   "version": "1.0.0",
-  "description": "Simple API using MongoDB, Express and Node.js",
-  "main": "index.js",
+  "description": "Simple API using MongoDB/Mongoose, Express and Node.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
   },
@@ -14,13 +14,11 @@
   "author": "Raissa Kuzer",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "method-override": "^3.0.0",
-    "mongodb": "^4.6.0",
     "mongoose": "^6.5.0"
   },
   "devDependencies": {

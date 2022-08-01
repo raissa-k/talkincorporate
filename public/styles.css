@@ -56,7 +56,7 @@ p, .hero > h2 {
 .form-section, form {
   display: grid;
   border-radius: .5rem;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 1rem;
   margin: 0;
   padding: 0 1rem;

@@ -1,5 +1,5 @@
 const express = require('express')
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const app = express()
 const mongoose = require('mongoose')
 const PORT = 3000
