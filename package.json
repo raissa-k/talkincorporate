@@ -4,6 +4,7 @@
   "description": "Simple API using MongoDB/Mongoose, Express and Node.js",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "keywords": [

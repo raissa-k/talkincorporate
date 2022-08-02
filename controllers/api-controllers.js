@@ -1,5 +1,6 @@
 const Entry = require('../models/entry')
-const {validationResult} = require('express-validator')
+const {validationResult} = require('express-validator');
+const { json } = require('express');
 
 const getEntriesApi = async (req, res, next) => {
     let entries;
@@ -32,7 +33,7 @@ const getCategoryApi = async (req, res, next) => {
     if (entries.length) {
         res.json({entries})
     } else {
-        res.json({entries: {warning: 'Nothing found in this search'}})
+        res.status(404).json({entries: {warning: 'Nothing found in this search'}})
     }
 }
 
@@ -60,15 +61,14 @@ const searchApi = async (req, res, next) => {
     if (entries.length) {
         res.json({entries})
     } else {
-        res.json({entries: {warning: 'Nothing found in this search'}})
+        res.status(404).json({entries: {warning: 'Nothing found in this search'}})
     }
 }
 
 const editEntryApi = async (req, res, next) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()){
-        console.log(errors)
-        return next(new Error('Invalid input.'))
+        return res.status(400).send(errors)
     }
 
     const editedEntry = await Entry.findByIdAndUpdate(req.params.id, req.body, {
@@ -76,12 +76,16 @@ const editEntryApi = async (req, res, next) => {
         upsert: false
     } )
     try{
-        res.status(200).json({
-            status : 'Success',
-            data : {
-              editedEntry
-            }
-          })
+        if (editedEntry == null){
+            res.status(404).send({error: 'Invalid ID'})
+        } else {
+            res.status(200).json({
+                status : 'Success',
+                data : {
+                  editedEntry
+                }
+              })
+        }
     }catch(err){
         console.log(err)
     }

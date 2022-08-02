@@ -77,29 +77,29 @@
 
             <p class="example">Success response for "general" category:</p>
 
-              <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-              <span class="token punctuation">{</span>
-                  <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"That idea will never work."</span><span class="token punctuation">,</span>
-                  <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"I am happy to explore this option but I do have some hesitations on the viability."</span><span class="token punctuation">,</span>
-                  <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
-              <span class="token punctuation">}</span>
-          <span class="token punctuation">]</span>
-      <span class="token punctuation">}</span></code></pre>
+            <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+                <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"That idea will never work."</span><span class="token punctuation">,</span>
+                        <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"I am happy to explore this option but I do have some hesitations on the viability."</span><span class="token punctuation">,</span>
+                        <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span></code></pre>
 
       
           
             <p class="example">Error response</p>
             <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"warning"</span><span class="token operator">:</span> <span class="token string">"Nothing found in this search"</span>
-      <span class="token punctuation">}</span></code></pre>
+                <span class="token property">"warning"</span><span class="token operator">:</span> <span class="token string">"Nothing found in this search"</span>
+            <span class="token punctuation">}</span></code></pre>
         </section>
       
         <section id="api-Edit_entry">
         <h2>Edit entry</h2>       
         <p>Edits text and category of an entry.</p>
         <span class="method meth-patch">patch</span>
-        <pre data-type="patch" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/edit/:id</code></pre>
+        <pre data-type="patch" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/:id</code></pre>
         <p>Permission necessary: none</p>
         <table>
             <thead>
@@ -166,31 +166,37 @@
           
             <p class="example">Success response:</p>
             <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"Success"</span><span class="token punctuation">,</span>
-          <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-              <span class="token property">"editedEntry"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                  <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"aaaaaaaaaaaaaa0000000000"</span><span class="token punctuation">,</span>
-                  <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"That idea will never work!"</span><span class="token punctuation">,</span>
-                  <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"I am happy to explore this option but I do have some hesitations on the viability."</span><span class="token punctuation">,</span>
-                  <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
-              <span class="token punctuation">}</span>
-          <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span></code></pre>
+                <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"Success"</span><span class="token punctuation">,</span>
+                <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"editedEntry"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                        <span class="token property">"_id"</span><span class="token operator">:</span> <span class="token string">"1234abcd0000aaaa00001234"</span><span class="token punctuation">,</span>
+                        <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"That idea will never work!"</span><span class="token punctuation">,</span>
+                        <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"I am happy to explore this option but I do have some hesitations on the viability."</span><span class="token punctuation">,</span>
+                        <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span></code></pre>
 
-      <p class="example">Connection success, invalid ID</p>
-              <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"Success"</span><span class="token punctuation">,</span>
-          <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-              <span class="token property">"editedEntry"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
-          <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span></code></pre>
+      <p class="example">Invalid ID</p>
+      <pre data-type="json" class="language-json" tabindex="0"><code class="language-json">Status<span class="token operator">:</span> <span class="token number">404</span> Not Found
+        <span class="token punctuation">{</span>
+        <span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"Invalid ID"</span>
+        <span class="token punctuation">}</span></code></pre>
               
-      <p class="example">Invalid input</p>
-              <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"Invalid input."</span>
-      <span class="token punctuation">}</span></code></pre>
-              </div>
-            </div>
+      <p class="example">Invalid value</p>
+      <pre data-type="json" class="language-json" tabindex="0"><code class="language-json">Example<span class="token operator">:</span> submitting <span class="token string">"FUNNY"</span> category
+        Status<span class="token operator">:</span> <span class="token number">400</span> Bad Request
+            <span class="token punctuation">{</span>
+                <span class="token property">"errors"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"FUNNY"</span><span class="token punctuation">,</span>
+                    <span class="token property">"msg"</span><span class="token operator">:</span> <span class="token string">"Invalid value"</span><span class="token punctuation">,</span>
+                    <span class="token property">"param"</span><span class="token operator">:</span> <span class="token string">"category"</span><span class="token punctuation">,</span>
+                    <span class="token property">"location"</span><span class="token operator">:</span> <span class="token string">"body"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span></code></pre>
+
         </section>
       
         <section id="api-Random">
@@ -202,14 +208,14 @@
             <p class="example">Success response example:</p>
 
             <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-              <span class="token punctuation">{</span>
-                  <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"Does taking on all this extra work come with extra pay?"</span><span class="token punctuation">,</span>
-                  <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"With my role expanding is there a plan to review my title and compensation to better reflect these additional responsibilities?"</span><span class="token punctuation">,</span>
-                  <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"demand"</span>
-              <span class="token punctuation">}</span>
-          <span class="token punctuation">]</span>
-      <span class="token punctuation">}</span></code></pre>
+                <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"Does taking on all this extra work come with extra pay?"</span><span class="token punctuation">,</span>
+                        <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"With my role expanding is there a plan to review my title and compensation to better reflect these additional responsibilities?"</span><span class="token punctuation">,</span>
+                        <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"demand"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span></code></pre>
         </section>
       
         <section id="api-Search">
@@ -235,33 +241,32 @@
                     <td>
                         <p>Query parameters. <br> May include more than one word joined by a <code>+</code>.</p>
                         <p>Example:</p> <pre><code>https://talkincorporate-api.herokuapp.com/api/search/gas+prices</code></pre>
-                        <p class="type-size">Minimum length: <code>3</code></p>
                      </td>
                 </tr>
               </tbody>
             </table>
 
             <p class="example">Success response for "gas+prices" search:</p>
-              <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-              <span class="token punctuation">{</span>
-                  <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"With these gas prices I am not driving to the office every day."</span><span class="token punctuation">,</span>
-                  <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"Is there a cost of adjustment for gas price reinbursement?"</span><span class="token punctuation">,</span>
-                  <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
-              <span class="token punctuation">}</span><span class="token punctuation">,</span>
-              <span class="token punctuation">{</span>
-                  <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"With these gas prices I am not driving to the office every day."</span><span class="token punctuation">,</span>
-                  <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"Moving forward will there be an expectation to be in the office more regularly?"</span><span class="token punctuation">,</span>
-                  <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
-              <span class="token punctuation">}</span>
-          <span class="token punctuation">]</span>
-      <span class="token punctuation">}</span></code></pre>
+            <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+                <span class="token property">"entries"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"With these gas prices I am not driving to the office every day."</span><span class="token punctuation">,</span>
+                        <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"Is there a cost of adjustment for gas price reinbursement?"</span><span class="token punctuation">,</span>
+                        <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"original"</span><span class="token operator">:</span> <span class="token string">"With these gas prices I am not driving to the office every day."</span><span class="token punctuation">,</span>
+                        <span class="token property">"corporate"</span><span class="token operator">:</span> <span class="token string">"Moving forward will there be an expectation to be in the office more regularly?"</span><span class="token punctuation">,</span>
+                        <span class="token property">"category"</span><span class="token operator">:</span> <span class="token string">"general"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span></code></pre>
      
           
             <p class="example">Error-response</p>
             <pre data-type="json" class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
-          <span class="token property">"warning"</span><span class="token operator">:</span> <span class="token string">"Nothing found in this search"</span>
-      <span class="token punctuation">}</span></code></pre>
+                <span class="token property">"warning"</span><span class="token operator">:</span> <span class="token string">"Nothing found in this search"</span>
+            <span class="token punctuation">}</span></code></pre>
         </section>
     </main>
     <footer>
