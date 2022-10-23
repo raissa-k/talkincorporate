@@ -35,7 +35,7 @@
   </header>
   <main>
     <section aria-label="Search entries" class="form-section">
-      <form method="get" action="/api/" id="category-form">
+      <form method="get" action="/" id="category-form">
         <select name="category" id="category">
           <option value="">Select a category</option>
           <option value="general">General communication</option>
@@ -47,7 +47,7 @@
         <button type="submit">Submit</button>
       </form>
 
-      <form action="/api/search" method="get" id="search-form">
+      <form action="/search" method="get" id="search-form">
         <input type="search" name="query" id="query" placeholder="Example: gas">
         <button type="submit">Search</button>
       </form>
@@ -55,9 +55,9 @@
     
     <section class="entries" id="entries" aria-labelledby="dictionary-title">
       <h2 id="dictionary-title">Dictionary Entries:</h2>
-      <% if (!entries.length) { %>
-        <h2>No entries found.</h2>
-      <% } %>
+      <% {%>
+        <h2><%= entries.warning %></h2>
+        <% } %>
       <ul class="dictionary">
         <% for(var i = 0; i < entries.length; i++) {%>
         <li class="dictionary__entry">

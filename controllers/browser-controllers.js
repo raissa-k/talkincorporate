@@ -17,7 +17,7 @@ const getEditPage = (req, res, next) => {
 
 const getCategory = async (req, res, next) => {
 	const category = req.params.category.toLowerCase()
-	let entries = Entry.find({ category: category })
+	let entries = await Entry.find({ category: category })
 	res.render('index.ejs', { entries })
 }
 
