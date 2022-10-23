@@ -34,7 +34,7 @@
             <a href="/">View entries</a>
             <a href="/crud">Edit entries</a>
             <h1>Talk in Corporate</h1>
-            <h2>API documentation</h2>
+            <h2><a href="https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0">(Interactive) API documentation</a></h2>
             <br>
             <nav class="entries"><ul>
                 <li><a href="#api-Category" class="category-title">Get a category</a></li>
@@ -47,7 +47,7 @@
         <h2>Get a category</h2>
         <p>Displays entries for a selected category.</p>
         <span class="method meth-get">get</span>
-        <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/:category</code></pre>
+        <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate.raissa-k.repl.co/api/:category</code></pre>
         <p> Permission necessary: none</p>
         <table>
             <thead>
@@ -99,7 +99,7 @@
         <h2>Edit entry</h2>       
         <p>Edits text and category of an entry.</p>
         <span class="method meth-patch">patch</span>
-        <pre data-type="patch" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/:id</code></pre>
+        <pre data-type="patch" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate.raissa-k.repl.co/api/:id</code></pre>
         <p>Permission necessary: none</p>
         <table>
             <thead>
@@ -203,7 +203,7 @@
             <h2>Retrieve a random result</h2>
         <p>Displays a single random entry.</p>
           <span class="method meth-get">get</span>
-          <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/random</code></pre>
+          <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate.raissa-k.repl.co/api/random</code></pre>
             <p>Permission necessary: none</p>
             <p class="example">Success response example:</p>
 
@@ -222,7 +222,7 @@
           <h2>Search</h2>
           <p>Retrieve entries that match the query.</p>
           <span class="method meth-get">get</span>
-          <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate-api.herokuapp.com/api/search/:query</code></pre>
+          <pre data-type="get" class="language-http" tabindex="0"><code class="language-http">https://talkincorporate.raissa-k.repl.co/api/search/:query</code></pre>
             <p> Permission necessary: none </p>
 
             <h3>Parameter</h3>
@@ -240,7 +240,7 @@
                     <td class="code">String</td>
                     <td>
                         <p>Query parameters. <br> May include more than one word joined by a <code>+</code>.</p>
-                        <p>Example:</p> <pre><code>https://talkincorporate-api.herokuapp.com/api/search/gas+prices</code></pre>
+                        <p>Example:</p> <pre><code>https://talkincorporate.raissa-k.repl.co/api/search/gas+prices</code></pre>
                      </td>
                 </tr>
               </tbody>

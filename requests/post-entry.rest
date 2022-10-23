@@ -1,0 +1,8 @@
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "original": "You are overcomplicating this.",
+    "corporate": "Being mindful of timelines. Let’s concentrate on the initial scope.",
+    "category": "general"
+}

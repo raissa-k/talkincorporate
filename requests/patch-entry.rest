@@ -1,0 +1,8 @@
+PATCH http://localhost:3000/api/62e9ed742b2f4a7a0866205a
+Content-Type: application/json
+
+{
+  "original": "This is the original",
+  "corporate": "This is the corporate",
+  "category": "lazy"
+}
