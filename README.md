@@ -5,29 +5,43 @@ This API returns what you might mean to say, what it should sound like in "corpo
 
 Entries can also be submitted, viewed, searched, and sorted by category on the project's main page.
 
-*Coming soon: user authentication.*
 
-**Link to project:** https://talkincorporate-api.herokuapp.com/<br>
-**API documentation:** https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0
-
-![screenshot of the home page](https://user-images.githubusercontent.com/91985540/182052320-7383fd9f-567c-4eec-91ef-68ab8721812a.png)
 
 ## Table of Contents
 
-- [Link to project](https://talkincorporate-api.herokuapp.com/)
-- [API documentation](https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0)
-- [Table of contents](#table-of-contents)
-- [How it's made](#how-its-made)
-- [Set up](#set-up)
-- [Folder Structure](#folder-structure)
-- [Limitations](#limitations)
-- [Optimizations](#optimizations)
-- [Lessons learned](#lessons-learned)
-- [Credits](#credits)
+* [Talk in Corporate](#talk-in-corporate)
+* [Table of Contents](#table-of-contents)
+* [Links](#links)
+* [Screenshots](#screenshots)
++ [Home Page](#home-page)
+* [Tech Stack](#tech-stack)
+* [How it's made](#how-it-s-made)
+* [Run Locally](#run-locally)
+* [Running Tests](#running-tests)
+* [Environment Variables](#environment-variables)
+* [Lessons Learned](#lessons-learned)
+* [Roadmap](#roadmap)
+* [Authors](#authors)
+* [Acknowledgements](#acknowledgements)
 
-## How It's Made:
+## Links
 
-**Tech used:** `HTML`, `CSS`, `JavaScript`, `MongoDB`/`Mongoose`, `Express`, `NodeJS`
+- [**Website**](https://talkincorporate.up.railway.app)
+- [API documentation (on website)](https://talkincorporate.up.railway.app/doc)
+- [API documentation (on Swagger)](https://app.swaggerhub.com/apis-docs/raissa-k/talk-in_corporate/1.0.0)
+
+## Screenshots
+
+### Home Page
+![screenshot of the home page](https://user-images.githubusercontent.com/91985540/182052320-7383fd9f-567c-4eec-91ef-68ab8721812a.png)
+
+## Tech Stack
+
+**Client:** HTML, CSS, JavaScript
+
+**Server:** Node, Express, MongoDB/Mongoose
+
+## How it's made
 
 Due to the simplicity of the website, I used pure CSS with *grid* and *flexbox* to make it light and responsive without media queries.
 
@@ -35,62 +49,67 @@ On the back end, the Express framework adds readability to NodeJS and makes it e
 
 Mongoose was chosen for out-of-the-box validation and abstraction of most of the MongoDB code. Its Schemas are an interesting practice of the M (models) of an MVC system.
 
-## Set up
+## Run Locally
 
-1. `git clone https://github.com/raissa-k/talkincorporate.git`
-2. `npm install`
-3. Set up .env with your own MONGODB_URL
-4. `npm run dev`
+Clone the project
 
-### `npm run dev`
-
-Runs in the development mode.
-<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## Folder structure
-
-After cloning this repository, it should look like this:
-
-```md
-.
-├── controllers
-│ ├── api-controllers.js
-│ └── browser-controllers.js
-├── models
-│ └─ entry.js
-├── public
-│ └─ [stylesheets, favicon, main.js]
-├── routes
-│ ├── api-routes.js
-│ └── browser-routes.js
-├── views
-│ ├── crud.ejs
-│ └── doc.ejs
-│ └── index.ejs
-├── node_modules
-│ ├── [...]
-├── package.json
-├── server.js
-└── [.gitignore, package-lock.json, README.md]
+```bash
+  git clone https://github.com/raissa-k/talkincorporate.git
 ```
-Once the MONGODB_URL value is defined in the .env file you will be able to populate your own collection of entries.
+Install dependencies
 
-## Limitations
+```bash
+  npm install
+```
 
-For security reasons I modified the JSON returned from API requests not to include the document IDs, which are necessary for updating and deleting entries in the database.
+Start the server
 
-For now, since I not only wanted to set up a RESTful web API but also make the entries visible and searchable from a user on the home page, the most time-consuming roadblock I found was getting the PATCH and DELETE methods to work with forms. A little research redirected me to the Express middleware "method-override", and after a few tries and tweaks I could finally get it working the way I had envisioned. IDs are still required and so the PATCH and DELETE methods are available to the general user, but the functions are in place to be redesigned once authentication is implemented. 
+* Development
+```bash
+  npm run dev
+```
+* Production
+```bash
+  npm start
+```
+## Running Tests
 
-## Optimizations
+To run tests, run the following command
 
-Possible future improvements include adding user authentication so that each user can edit and delete their own entries from the website.
+```bash
+  npm run test
+```
 
-## Lessons Learned:
+## Environment Variables
+
+To run this project, add the following environment variables to your `.env` file in `/config/.env`
+
+A `.env.example` file is supplied inside the `config` folder.
+
+The `TEST_MONGODB_URL` variable is only required for tests and is optional.
+
+```bash
+MONGODB_URL=
+TEST_MONGODB_URL=
+PORT=3000
+```
+
+## Lessons Learned
 
 This was a great practice in MVC architecture. As I began building this project, the server.js file started to become difficult to read and keep in order, and so creating separate routes and controllers for the API and page renders helped keep it neat and still open to further improvement.
 
-## Credits:
+## Roadmap
+
+- [ ]  Add authentication methods
+- [ ]  Clean and minimize .css and .js files
+- [x]  Add tests
+
+## Authors
+
+- [@raissa-k](https://www.github.com/raissa-k)
+
+## Acknowledgements
+
 - [Laura](https://www.instagram.com/loewhaley/) for the content.
-- [apiDOC](https://apidocjs.com/) for the base of the documentation page on Heroku.
+- [apiDOC](https://apidocjs.com/) for the base of the documentation page on Replit.
 - [SwaggerHub](https://swagger.io/tools/swaggerhub/) for the hosted, interactive documentation.

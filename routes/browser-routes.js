@@ -21,6 +21,8 @@ browserRouter.patch('/', [
 	check('category').isIn(['general', 'lazy', 'boundary', 'demand', 'interview'])
 ], browserControllers.editEntry)
 
-browserRouter.delete('/', browserControllers.deleteEntry)
+browserRouter.delete('/', [
+	check('deleteid').isMongoId().notEmpty()
+],	browserControllers.deleteEntry)
 
 module.exports = browserRouter

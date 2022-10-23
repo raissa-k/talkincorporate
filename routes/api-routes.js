@@ -15,5 +15,7 @@ apiRouter.patch('/:id', [
 	check('category').isIn(['general', 'lazy', 'boundary', 'demand', 'interview'])
 ], apiControllers.editEntryApi)
 
+apiRouter.delete('/:id', apiControllers.deleteEntryApi)
+
 
 module.exports = apiRouter

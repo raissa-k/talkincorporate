@@ -56,7 +56,7 @@ app.use('/', browserRoutes)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
-/* // If the Node process ends, close the Mongoose connection
-process.on('SIGINT', middleware.gracefulExit).on('SIGTERM', middleware.gracefulExit) */
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', middleware.gracefulExit).on('SIGTERM', middleware.gracefulExit)
 
 module.exports = app

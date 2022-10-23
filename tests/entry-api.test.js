@@ -1,26 +1,16 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
+const helper = require('./test-helper')
 const app = require('../app')
 const api = supertest(app)
 const Entry = require('../models/entry')
 
-const initialEntries = [
-	{
-		original: 'This idea will never work.',
-		corporate: 'I am happy to explore this option but I do have some hesitations on the viability.',
-		category: 'general'
-	},
-	{
-		original: 'That sounds like a You problem.',
-		corporate: 'I believe that falls within your scope of responsibilities but I am happy to support where it makes sense.',
-		category: 'lazy'
-	}
-]
+
 
 beforeEach(async () => {
 	await Entry.deleteMany({})
 
-	for (let newEntry of initialEntries){
+	for (let newEntry of helper.initialEntries){
 		let entryObject = new Entry(newEntry)
 		await entryObject.save()
 	}
@@ -34,7 +24,7 @@ test('entries are returned as json', async () => {
 
 test('number of entries matches entries in array', async () => {
 	const response = await api.get('/api')
-	expect(response.body).toHaveLength(initialEntries.length)
+	expect(response.body).toHaveLength(helper.initialEntries.length)
 })
 
 test('the entry matches expected category', async () => {
@@ -53,14 +43,13 @@ test('a valid entry can be created', async () => {
 	await api
 		.post('/')
 		.send(newEntry)
-
-	const response = await api.get('/api')
-		.expect(200)
+		.expect(201)
 		.expect('Content-Type', /application\/json/)
 
-	const originalText = response.body.map(entries => entries.original)
+	const entriesAtEnd = await helper.entriesInDb()
+	expect(entriesAtEnd).toHaveLength(helper.initialEntries.length + 1)
 
-	expect(response.body).toHaveLength(initialEntries.length + 1)
+	const originalText = entriesAtEnd.map(entries => entries.original)
 	expect(originalText).toContain('Tester')
 })
 
@@ -78,7 +67,22 @@ test('an entry with no text is not added', async () => {
 
 	const response = await api.get('/api')
 
-	expect(response.body).toHaveLength(initialEntries.length)
+	expect(response.body).toHaveLength(helper.initialEntries.length)
+})
+
+test('an entry can be deleted', async () => {
+	const startingEntries = await helper.entriesInDb()
+	const entryToDelete = startingEntries[0]
+
+	await api
+		.delete(`/api/${entryToDelete.id}`)
+		.expect(204)
+
+	const endingEntries = await helper.entriesInDb()
+	expect(endingEntries).toHaveLength(helper.initialEntries.length - 1)
+
+	const originalText = endingEntries.map(entries => entries.original)
+	expect(originalText).not.toContain(entryToDelete.original)
 })
 
 afterAll(() => {

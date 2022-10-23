@@ -1,10 +1,10 @@
 const logger = require('./logger')
 const mongoose = require('mongoose')
 
-const requestLogger = (request, response, next) => {
-	logger.info('Method:', request.method)
-	logger.info('Path:  ', request.path)
-	logger.info('Body:  ', request.body)
+const requestLogger = (req, res, next) => {
+	logger.info('Method:', req.method)
+	logger.info('Path:  ', req.path)
+	logger.info('Body:  ', req.body)
 	logger.info('---')
 	next()
 }
@@ -25,11 +25,11 @@ const errorHandler = (error, req, res, next) => {
 	next(error)
 }
 
-/* const gracefulExit = () => {
+const gracefulExit = () => {
 	mongoose.connection.close(() => {
 		logger.info('Mongoose default connection with DB Corporate Speech is disconnected through app termination')
 		process.exit(0)
 	})
-} */
+}
 
-module.exports = { requestLogger, unknownEndpoint, errorHandler }
+module.exports = { requestLogger, unknownEndpoint, errorHandler, gracefulExit }
