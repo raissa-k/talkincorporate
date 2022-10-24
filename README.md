@@ -15,7 +15,7 @@ Entries can also be submitted, viewed, searched, and sorted by category on the p
 * [Screenshots](#screenshots)
 + [Home Page](#home-page)
 * [Tech Stack](#tech-stack)
-* [How it's made](#how-it-s-made)
+* [How it's made](#how-its-made)
 * [Run Locally](#run-locally)
 * [Running Tests](#running-tests)
 * [Environment Variables](#environment-variables)
