@@ -32,8 +32,17 @@ Entries can also be submitted, viewed, searched, and sorted by category on the p
 
 ## Screenshots
 
+<details><summary>
+
 ### Home Page
+
+</summary>
+
 ![screenshot of the home page](https://user-images.githubusercontent.com/91985540/182052320-7383fd9f-567c-4eec-91ef-68ab8721812a.png)
+
+</details>
+
+![Gif animation of navigating through the project](https://user-images.githubusercontent.com/91985540/197550545-684bcd2a-7cf5-4895-96fe-761f44400db4.gif)
 
 ## Tech Stack
 
